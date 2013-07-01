@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+{% block head %}
+    <meta charset="utf-8">
+    <title>
+        {% block site_title %}TEST/PLOT{% endblock site_title %}
+        {% block section_title %}{% endblock section_title %}
+        {% block page_title %}{% endblock page_title %}
+    </title>
+    {% block metadata %}
+    <meta name="description" content="">   
+    <meta name="author" content="">
+    {% endblock metadata %}
+
+    {% block mobile_viewport %}
+    <meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0,
+	                               width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    {% endblock mobile_viewport %}
+
+    {% block favicons %}
+    <link rel="icon" type="image/ico" href="{{ STATIC_URL }}images/favicon.ico" />
+    {% endblock favicons %}
+
+    {% block css %}
+    {% endblock css %}
+
+    {% block js_head %}
+    {% endblock js_head %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+{% endblock head %}
+</head>
+
+<body class="{% block body_class %}default{% endblock body_class%}">
+{% block body %}
+    {% block header %}
+    <header>
+        <h1><a href="{% url home %}">TEST/PLOT</a></h1>
+        <nav>
+            <ul>
+                <li><a class="about" href="{% url about %}">About</a></li>
+                <li><a class="projects" href="{% url projects_project_list %}">Portfolio</a></li>
+                <li><a class="blog" href="{% url blog %}">Blog</a></li>
+                <li><a class="contact" href="{% url contact %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% endblock header %}
+
+    <div class="content">
+    {% block content %}
+    {% endblock content %}
+    </div>
+    
+    {% block footer %}
+    <footer>
+        <span class="copyright">&copy; {% now "Y" %} TEST/PLOT</span>
+    </footer>
+    {% endblock footer %}
+
+    <!-- JavaScript at the bottom for fast page loading -->
+
+    {% block js_frameworks %}
+    {% endblock js_frameworks %}
+
+    {% block js_global %}
+    {% endblock js_global %}
+
+    {% block js_local %}
+    {% endblock js_local %}
+
+    {% block google_analytics %}
+    <script>
+    var _gaq=[['_setAccount',''],['_trackPageview'],['_trackPageLoadTime']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    {% endblock google_analytics %}
+
+{% endblock body %}
+</body>
+</html>

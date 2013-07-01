@@ -1,0 +1,30 @@
+{% extends "portfolio/base.html" %}
+{% block content %}
+    {% block aside %}
+        <aside>
+            {% block filter_nav %}
+                <nav class="filter">
+                    <ul class="categories">
+                        <li></li>
+                    </ul>
+                </nav>
+            {% endblock filter_nav %}
+        </aside>
+    {% endblock aside %}
+    {% block main %}
+        <section>
+            {% block projects %}
+            <section class="project-list">
+            {% for project in project_list %}
+                {% include "portfolio/_project_snippet.html" %}
+            {% endfor %}
+            </section>
+            {% endblock projects %}
+        </section>
+    {% endblock main %}
+{% endblock content %}
+{% block js_local %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.url.js"></script>
+<script type="text/javascript">
+</script>
+{% endblock js_local %}
