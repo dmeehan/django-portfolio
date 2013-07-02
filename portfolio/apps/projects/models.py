@@ -204,9 +204,9 @@ class ProjectVisual(models.Model):
     caption = models.CharField()
     project = models.ForeignKey(Project)
     
-    order = PositionField()
-    public = models.BooleanField()    
-    main = models.BooleanField()
+    order = PositionField(collection='project', default=0)
+    public = models.BooleanField(default=True)    
+    lead = models.BooleanField(default=False)
 
     def get_upload_path(instance, filename):
         return os.path.join('visuals', 'project', instance.project.title, filename)
@@ -221,3 +221,9 @@ class ProjectVisual(models.Model):
         else:
             return u'%s' % self.filename 
             
+    def save(self, *args, **kwargs):
+        if self.lead:
+            related_files = self._default_manager.filter(project=self.project)
+            related_files.update(lead=False)
+                
+        return super(ProjectVisual, self).save(*args, **kwargs)
